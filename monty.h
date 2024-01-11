@@ -45,16 +45,22 @@ typedef struct instruction_s
  */
 typedef struct token_s
 {
-        char *token;
-        struct token_s *prev;
+        char *value;
         struct token_s *next;
 } token_t;
+
+
+
+
+
+
 
 
 int check_file(int count, char *file);
 int read_file_to_memory(char **b, char *filename, size_t n);
 size_t get_file_size(char *file_name);
-token_t tokenize(char *buf);
+token_t *tokenize(char **buf);
+int check_token(char *token_value);
 
 
 #endif
