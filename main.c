@@ -14,7 +14,7 @@ char **buf;
 size_t file_size;
 token_t  *tokens;
 int line;
-
+int i;
 
 line = 1;
 arg_count = argc;
@@ -27,7 +27,6 @@ tokens = NULL;
 
 tokens =  tokenize(buf);
 
-
 while(tokens != NULL){
 if(check_token(tokens->value) == -1){
 fprintf(stderr,"L%d: unknown instruction: %s\n", line, tokens->value);
@@ -38,6 +37,11 @@ line++;
 tokens = tokens->next;
 }
 
+i = 0;
+while(alphabet[i] != NULL){
+printf("%s\n",  alphabet[i]);
+i++;
+}
 
 
 

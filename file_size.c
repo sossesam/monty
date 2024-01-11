@@ -7,10 +7,10 @@ FILE *fptr;
 size_t size;
 
 
+
 fptr = fopen(file_name, "r");
 fseek(fptr, 0, SEEK_END);
 size = ftell(fptr);
 
 return size;
-
 }
