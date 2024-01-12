@@ -13,8 +13,11 @@ char *file_name;
 char **buf;
 size_t file_size;
 token_t  *tokens;
+stack_t **number_stack;
 int line;
-int i;
+int pos;
+int token_number;
+
 
 line = 1;
 arg_count = argc;
@@ -24,31 +27,29 @@ file_size = get_file_size(file_name);;
 buf = malloc(file_size);
 read_file_to_memory(buf, file_name, file_size);
 tokens = NULL;
-
 tokens =  tokenize(buf);
+number_stack= malloc(sizeof(stack_t));
+
 
 while(tokens != NULL){
 if(check_token(tokens->value) == -1){
 fprintf(stderr,"L%d: unknown instruction: %s\n", line, tokens->value);
 return EXIT_FAILURE;
+}else if(check_token(tokens->value) >= 1)
+{
+    pos = check_token(tokens->value) - 1;
+    if(strcmp(tokens->value, "pall") == 0){
+        operations[pos].f(number_stack, 0);
+    }
+    
+}else if(check_token(tokens->value) == 0){
+    token_number = atoi(tokens->value);
+    operations[pos].f(number_stack, token_number);
 }
 
 line++;
 tokens = tokens->next;
 }
-
-i = 0;
-while(alphabet[i] != NULL){
-printf("%s\n",  alphabet[i]);
-i++;
-}
-
-
-
-
-
-
-
 
 
 
