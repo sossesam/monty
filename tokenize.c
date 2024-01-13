@@ -4,16 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
-
-
-
-
-
-
-
-
 token_t  *tokenize(char **buf){
 
 token_t *node, *head, *current;

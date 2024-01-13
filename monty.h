@@ -51,7 +51,7 @@ typedef struct token_s
 
 
 
-extern instruction_t operations[2];
+extern instruction_t operations[4];
 int check_file(int count, char *file);
 int read_file_to_memory(char **b, char *filename, size_t n);
 size_t get_file_size(char *file_name);
@@ -59,6 +59,7 @@ token_t *tokenize(char **buf);
 int check_token(char *token_value);
 void push(stack_t **stack, int line_number);
 void pall(stack_t **stack, int line_number);
-
+void pint(stack_t **stack, int number);
+void pop(stack_t **stack, int number);
 
 #endif

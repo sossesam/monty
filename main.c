@@ -19,6 +19,7 @@ int pos;
 int token_number;
 
 
+
 line = 1;
 arg_count = argc;
 file_name = argv[1];
@@ -28,7 +29,10 @@ buf = malloc(file_size);
 read_file_to_memory(buf, file_name, file_size);
 tokens = NULL;
 tokens =  tokenize(buf);
-number_stack= malloc(sizeof(stack_t));
+number_stack = malloc(sizeof(stack_t));
+
+
+
 
 
 while(tokens != NULL){
@@ -38,8 +42,27 @@ return EXIT_FAILURE;
 }else if(check_token(tokens->value) >= 1)
 {
     pos = check_token(tokens->value) - 1;
+    
     if(strcmp(tokens->value, "pall") == 0){
+        if((*number_stack) == NULL){
+        fprintf(stderr,"stack too small\n");
+        return EXIT_FAILURE;
+        }
+
         operations[pos].f(number_stack, 0);
+        
+    }else if(strcmp(tokens->value, "pint") == 0){
+        if((*number_stack) == NULL){
+        fprintf(stderr,"stack too small\n");
+        return EXIT_FAILURE;
+        }
+        operations[pos].f(number_stack, 0);  
+    }else if(strcmp(tokens->value, "pop") == 0){
+        if((*number_stack) == NULL){
+        fprintf(stderr,"stack too small\n");
+        return EXIT_FAILURE;
+        }
+        operations[pos].f(number_stack, 0);  
     }
     
 }else if(check_token(tokens->value) == 0){
